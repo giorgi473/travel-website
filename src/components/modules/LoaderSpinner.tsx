@@ -1,4 +1,4 @@
-export function LoaderSpinner() {
+export function GeorgiaSpinner() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <svg

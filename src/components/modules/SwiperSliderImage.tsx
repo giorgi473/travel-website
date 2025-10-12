@@ -8,7 +8,7 @@ import { Autoplay } from "swiper/modules";
 import { ArrowRight } from "lucide-react";
 import "swiper/css";
 import { useLanguage } from "@/context/LanguageContext";
-import { LoaderSpinner } from "./LoaderSpinner";
+import { GeorgiaSpinner } from "@/components/modules/LoaderSpinner";
 
 interface Slider {
   id: number;
@@ -84,7 +84,6 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 const SwiperSliderImage = forwardRef(() => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
-  // --- მდგომარეობები API მონაცემებისთვის ---
   const [sliders, setSliders] = useState<Slider[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -93,7 +92,6 @@ const SwiperSliderImage = forwardRef(() => {
   const swiperRef = useRef<SwiperRef>(null);
   const { currentLanguage } = useLanguage();
 
-  // --- API Fetch ლოგიკა ---
   useEffect(() => {
     const fetchSliders = async () => {
       try {
@@ -105,7 +103,6 @@ const SwiperSliderImage = forwardRef(() => {
         }
         const data: Slider[] = await response.json();
 
-        // ხელოვნური დაყოვნება 900ms
         setTimeout(() => {
           setSliders(data);
           setLoading(false);
@@ -121,12 +118,11 @@ const SwiperSliderImage = forwardRef(() => {
     fetchSliders();
   }, []);
 
-  // --- ჩატვირთვისა და შეცდომის დამუშავება ---
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-xl text-gray-700">
-          <LoaderSpinner />
+          <GeorgiaSpinner />
         </div>
       </div>
     );
@@ -136,7 +132,6 @@ const SwiperSliderImage = forwardRef(() => {
     return <div className="text-center mt-10 text-red-500">{error}</div>;
   }
 
-  // თუ მონაცემები ჩაიტვირთა, მაგრამ მასივი ცარიელია
   if (sliders.length === 0) {
     return (
       <div className="text-center mt-10 text-gray-500">
@@ -144,7 +139,6 @@ const SwiperSliderImage = forwardRef(() => {
       </div>
     );
   }
-  // ---
 
   const handleThumbnailClick = (index: number, pause: boolean) => {
     if (swiperRef.current) {
@@ -159,7 +153,6 @@ const SwiperSliderImage = forwardRef(() => {
     }
   };
 
-  // Translations for buttons
   const translations = {
     ka: {
       planTrip: "დაგეგმე მოგზაურობა",
@@ -208,11 +201,9 @@ const SwiperSliderImage = forwardRef(() => {
                       ))}
                   </div>
                 </div>
-
                 <p className="text-sm pr-1.5 sm:text-base sm:pr-5 md:text-lg lg:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl text-gray-300">
                   {item.description[currentLanguage as "ka" | "en"] || ""}
                 </p>
-
                 <div className="flex flex-row gap-3 sm:gap-4">
                   <button
                     className="bg-red-500 flex items-center gap-2 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
