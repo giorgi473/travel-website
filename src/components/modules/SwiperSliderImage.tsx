@@ -72,7 +72,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         </div>
       )}
       <Image
-        src={src}
+        src={src} // სრული URL
         alt={`Thumbnail ${index + 1}`}
         fill
         className="object-cover rounded-md"
@@ -96,7 +96,7 @@ const SwiperSliderImage = forwardRef(() => {
     const fetchSliders = async () => {
       try {
         const response = await fetch(
-          "https://nest-travel-api-9x63.vercel.app/api/v1/slider"
+          "https://travel-api-25.netlify.app/api/v1/sliders"
         );
         if (!response.ok) {
           throw new Error("API request failed");
@@ -185,7 +185,7 @@ const SwiperSliderImage = forwardRef(() => {
           <SwiperSlide key={item.id || index}>
             <div className="relative w-full h-full flex items-center justify-center">
               <Image
-                src={item.src}
+                src={item.src} // სრული URL
                 alt={`Slide ${index + 1}`}
                 fill
                 className="object-cover"
