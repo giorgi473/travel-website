@@ -429,11 +429,16 @@ export default function CardSwiperSlider() {
     return (
       <>
         <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
+          <div className="mb-20">
+            <Skeleton className="h-40 w-[265px] sm:w-[320px] md:h-48 md:w-[390px] lg:h-48 lg:w-[520px]">
+              {currentLanguage === "en" ? <></> : <></>}
+            </Skeleton>
+          </div>
           <div className="flex items-center justify-between mb-5">
-            <Skeleton className="h-7 w-64" />
+            <Skeleton className="h-4 w-[200px] lg:h-4 lg:w-[350px]" />
             <div className="flex gap-2">
-              <Skeleton className="h-8 w-8 rounded" />
-              <Skeleton className="h-8 w-8 rounded" />
+              <Skeleton className="h-4 w-4 rounded" />
+              <Skeleton className="h-4 w-4 rounded" />
             </div>
           </div>
         </div>
@@ -444,7 +449,7 @@ export default function CardSwiperSlider() {
                 key={index}
                 className="bg-white rounded-lg shadow-md overflow-hidden"
               >
-                <Skeleton className="w-full h-80 sm:h-96 md:h-96" />
+                <Skeleton className="w-full h-96 sm:h-96 md:h-96" />
               </div>
             ))}
           </div>
@@ -482,6 +487,22 @@ export default function CardSwiperSlider() {
   return (
     <>
       <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#3b3b3b] mb-14">
+          {currentLanguage === "en" ? (
+            <>
+              Sea, mountains, resorts <br />
+              and culture in <strong>one place.</strong> <br /> We’ve got you
+              covered.
+            </>
+          ) : (
+            <>
+              ეს <strong>საქართველოა,</strong> <br />
+              ქვეყანა, რომელიც <br />
+              დაუვიწყარ სანახაობებს <br />
+              გთავაზობს!
+            </>
+          )}
+        </h3>
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2">
             <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
