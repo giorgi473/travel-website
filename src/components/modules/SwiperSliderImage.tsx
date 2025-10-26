@@ -169,7 +169,7 @@ const SwiperSliderImage = forwardRef(() => {
                 />
                 <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-8 lg:px-11 container mx-auto z-50 text-white">
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl lg:pr-4 font-bold mb-4 sm:mb-6 md:mb-8 lg:mb-10">
                     <div className="space-y-1 sm:space-y-2">
                       {(item.title[currentLanguage as "ka" | "en"] || "")
                         .split("\n\n")
