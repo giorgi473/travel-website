@@ -1,6 +1,7 @@
 import React from "react";
 import SwiperSliderImage from "@/components/modules/SwiperSliderImage";
 import CardSwiperSlider from "@/components/CardSwiperSlider";
+import MapOfGeorgia from "@/components/modules/MapOfGeorgia";
 
 function page() {
   return (
@@ -11,8 +12,12 @@ function page() {
       <section>
         <CardSwiperSlider />
       </section>
-
-      <section>sdsdsd</section>
+      <section>
+        <div>
+          <MapOfGeorgia />
+        </div>
+      </section>
+      <section>სდსდ</section>
     </div>
   );
 }

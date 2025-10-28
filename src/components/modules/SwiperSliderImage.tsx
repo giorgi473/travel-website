@@ -8,6 +8,7 @@ import { Autoplay } from "swiper/modules";
 import { ArrowRight } from "lucide-react";
 import "swiper/css";
 import { useLanguage } from "@/context/LanguageContext";
+import AnimatedBtn from "../buttonsUI/AnimatedBtn";
 
 interface Slider {
   id: number;
@@ -182,20 +183,27 @@ const SwiperSliderImage = forwardRef(() => {
                     {item.description[currentLanguage as "ka" | "en"] || ""}
                   </p>
                   <div className="flex flex-row gap-3 sm:gap-4">
-                    <button
-                      className="bg-red-500 flex items-center gap-2 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-red-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
-                      onClick={() => router.push("/popular-tours")}
-                    >
-                      {translations[currentLanguage].planTrip}{" "}
-                      <ArrowRight size={18} className="hidden sm:flex" />
-                    </button>
-                    <button
-                      className="bg-gray-800 flex items-center gap-2 text-white px-4 sm:px-5 md:px-6 lg:px-6 py-1.5 sm:py-2 rounded hover:bg-gray-600 cursor-pointer text-sm sm:text-base md:text-lg lg:text-lg"
-                      onClick={() => router.push("/why-georgia")}
-                    >
-                      {translations[currentLanguage].learnMore}{" "}
-                      <ArrowRight size={18} className="hidden sm:flex" />
-                    </button>
+                    <div onClick={() => router.push("/popular-tours")}>
+                      <AnimatedBtn
+                        classNameButton="from-red-600 via-red-600 to-rose-600"
+                        classNameSpan="from-rose-900 via-red-500 to-red-800"
+                      >
+                        {translations[currentLanguage].planTrip}{" "}
+                        <ArrowRight
+                          size={16}
+                          className="hidden sm:flex mt-[1.5px]"
+                        />
+                      </AnimatedBtn>
+                    </div>
+                    <div onClick={() => router.push("/why-georgia")}>
+                      <AnimatedBtn
+                        classNameButton="from-gray-800 via-gray-800 to-gray-800"
+                        classNameSpan="from-gray-900 via-gray-700 to-gray-900"
+                      >
+                        {translations[currentLanguage].learnMore}
+                        <ArrowRight size={16} className="sm:flex mt-[1.5px]" />
+                      </AnimatedBtn>
+                    </div>
                   </div>
                 </div>
               </div>
