@@ -251,16 +251,6 @@ export default function CardPage({
     },
   ];
 
-  const sliderTitle =
-    card.slideCard[0]?.text?.[currentLanguage] ||
-    (currentLanguage === "en"
-      ? "Explore top attractions"
-      : "აღმოაჩინეთ ტოპ სანახაობები");
-
-  const filteredSlideCard = card.slideCard.filter(
-    (item) => item.src && item.src !== ""
-  );
-
   return (
     <div className="space-y-14">
       <div className="relative w-full h-screen">
@@ -514,7 +504,7 @@ export default function CardPage({
         </div>
       </section>
       <section>
-        <CardSwiperSlider items={filteredSlideCard} title={sliderTitle} />
+        <CardSwiperSlider />
       </section>
       <section>
         <div className="px-5 lg:px-0">
