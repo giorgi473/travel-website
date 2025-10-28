@@ -187,6 +187,8 @@ export default function CardSwiperSlider() {
     );
   }
 
+  const limitedDestinations = destinations.slice(0, 12);
+
   return (
     <>
       <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
@@ -215,7 +217,7 @@ export default function CardSwiperSlider() {
             </h3>
           </div>
           <div className="flex gap-2">
-            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
+            <button className="custom-next-button cursor-pointer bg-gray-100 p-0.5 rounded-sm select-none">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -230,7 +232,7 @@ export default function CardSwiperSlider() {
                 />
               </svg>
             </button>
-            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
+            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm select-none">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -265,7 +267,7 @@ export default function CardSwiperSlider() {
           }}
           className="w-full"
         >
-          {destinations.map((destination) => {
+          {limitedDestinations.map((destination) => {
             const isInCart = isSightInCart(destination.id);
 
             return (

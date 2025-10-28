@@ -203,7 +203,7 @@ export default function CardSwiperSlider() {
             </h3>
           </div>
           <div className="flex gap-2">
-            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
+            <button className="custom-next-button cursor-pointer bg-gray-100 p-0.5 rounded-sm select-auto">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -218,7 +218,7 @@ export default function CardSwiperSlider() {
                 />
               </svg>
             </button>
-            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
+            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm select-none">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
