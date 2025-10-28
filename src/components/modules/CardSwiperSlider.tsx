@@ -37,6 +37,15 @@ interface Destination {
   };
 }
 
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 export default function CardSwiperSlider() {
   const [heartAnimations, setHeartAnimations] = useState<
     Record<number, boolean>
@@ -60,9 +69,9 @@ export default function CardSwiperSlider() {
           throw new Error("Failed to fetch destinations");
         }
 
-        const data = await response.json();
+        const data: Destination[] = await response.json();
 
-        setDestinations(data);
+        setDestinations(shuffleArray(data).slice(0, 12));
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
