@@ -1,92 +1,63 @@
 "use client";
 
 import type React from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { motion, type Variants } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Skeleton } from "@/components/ui/skeleton";
 
-interface Destination {
+interface SlideItem {
   id: number;
   title: {
     en: string;
     ka: string;
   };
+  name: {
+    en: string;
+    ka: string;
+  };
   src: string;
-  modalSrc: string;
-  description: {
-    en: string;
-    ka: string;
-  };
-  region: {
-    en: string;
-    ka: string;
-  };
-  city: {
+  additionalDescription: {
     en: string;
     ka: string;
   };
 }
 
-export default function CardSwiperSlider() {
+interface Props {
+  items: SlideItem[];
+  title?: string;
+  loading?: boolean;
+}
+
+export default function CardSwiperSlider({
+  items,
+  title,
+  loading = false,
+}: Props) {
   const [heartAnimations, setHeartAnimations] = useState<
     Record<number, boolean>
   >({});
-  const [destinations, setDestinations] = useState<Destination[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   const { addSight, removeSight, isSightInCart } = useCart();
   const { currentLanguage } = useLanguage();
 
-  useEffect(() => {
-    const fetchDestinations = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          "https://nest-travel-api.vercel.app/api/v1/slider/destination"
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch destinations");
-        }
-
-        const data = await response.json();
-
-        setDestinations(data);
-        setError(null);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-        console.error("Error fetching destinations:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDestinations();
-  }, []);
-
-  const handleHeartClick = (
-    destination: Destination,
-    event: React.MouseEvent
-  ) => {
+  const handleHeartClick = (item: SlideItem, event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
 
     const sight = {
-      id: destination.id,
-      title: destination.title[currentLanguage],
-      description: destination.description[currentLanguage],
-      src: destination.src,
+      id: item.id,
+      title: item.title[currentLanguage],
+      description: item.additionalDescription[currentLanguage],
+      src: item.src,
     };
 
     const isInCart = isSightInCart(sight.id);
@@ -97,9 +68,9 @@ export default function CardSwiperSlider() {
       addSight(sight);
     }
 
-    setHeartAnimations((prev) => ({ ...prev, [destination.id]: true }));
+    setHeartAnimations((prev) => ({ ...prev, [item.id]: true }));
     setTimeout(() => {
-      setHeartAnimations((prev) => ({ ...prev, [destination.id]: false }));
+      setHeartAnimations((prev) => ({ ...prev, [item.id]: false }));
     }, 1000);
   };
 
@@ -122,11 +93,6 @@ export default function CardSwiperSlider() {
     return (
       <>
         <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
-          <div className="mb-14">
-            <Skeleton className="h-8 w-[280px] mb-2 sm:h-9 sm:w-[350px] md:h-10 md:w-[420px] lg:h-12 lg:w-[520px]" />
-            <Skeleton className="h-8 w-[240px] mb-2 sm:h-9 sm:w-[300px] md:h-10 md:w-[360px] lg:h-12 lg:w-[450px]" />
-            <Skeleton className="h-8 w-[200px] sm:h-9 sm:w-[250px] md:h-10 md:w-[300px] lg:h-12 lg:w-[380px]" />
-          </div>
           <div className="flex items-center justify-between mb-5">
             <Skeleton className="h-5 w-[200px] sm:h-6 sm:w-[250px] md:h-7 md:w-[300px] lg:h-7 lg:w-[350px]" />
             <div className="flex gap-2">
@@ -135,15 +101,15 @@ export default function CardSwiperSlider() {
             </div>
           </div>
         </div>
-        <div className="pl-2 sm:pl-2 sm:pr-0 md:pl-2 md:pr-0 lg:pl-2 lg:pr-0">
-          <div className="flex gap-2.5 sm:gap-5 md:gap-5 lg:gap-5 overflow-hidden">
-            {Array.from({ length: 12 }).map((_, index) => (
+        <div className="px-4">
+          <div className="flex gap-5 overflow-hidden">
+            {Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 w-[calc(40%-5px)] sm:w-[calc(40%-5px)] md:w-[calc(40%-5px)] lg:w-[calc(22%-2px)]"
+                className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
               >
                 <div className="relative">
-                  <Skeleton className="w-full h-52 sm:h-52 md:h-96 rounded-t-lg" />
+                  <Skeleton className="w-full h-80 sm:h-96 md:h-96 rounded-t-lg" />
                   <div className="absolute top-2 right-2 sm:top-5 sm:right-5">
                     <Skeleton className="h-4 w-4 sm:h-5 sm:w-5 rounded-full" />
                   </div>
@@ -161,57 +127,22 @@ export default function CardSwiperSlider() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-lg text-red-500">
-            {currentLanguage === "en" ? `Error: ${error}` : `შეცდომა: ${error}`}
-          </div>
-        </div>
-      </div>
-    );
+  if (items.length === 0) {
+    return null;
   }
 
-  if (destinations.length === 0) {
-    return (
-      <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-lg">
-            {currentLanguage === "en"
-              ? "No destinations found"
-              : "სანახაობები არ მოიძებნა"}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const defaultTitle =
+    currentLanguage === "en"
+      ? "Explore top attractions"
+      : "აღმოაჩინეთ ტოპ სანახაობები";
 
   return (
     <>
       <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
-        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#3b3b3b] mb-14">
-          {currentLanguage === "en" ? (
-            <>
-              Sea, mountains, resorts <br />
-              and culture in <strong>one place.</strong> <br /> We’ve got you
-              covered.
-            </>
-          ) : (
-            <>
-              ეს <strong>საქართველოა,</strong> <br />
-              ქვეყანა, რომელიც <br />
-              დაუვიწყარ სანახაობებს <br />
-              გთავაზობს!
-            </>
-          )}
-        </h3>
         <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
-              {currentLanguage === "en"
-                ? "Discover Popular Attractions"
-                : "აღმოაჩინე პოპულარული სანახაობები"}
+              {title || defaultTitle}
             </h3>
           </div>
           <div className="flex gap-2">
@@ -230,7 +161,7 @@ export default function CardSwiperSlider() {
                 />
               </svg>
             </button>
-            <button className="custom-prev-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
+            <button className="custom-next-button cursor-pointer bg-gray-100 p-0.5 rounded-sm">
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
@@ -265,23 +196,25 @@ export default function CardSwiperSlider() {
           }}
           className="w-full"
         >
-          {destinations.map((destination) => {
-            const isInCart = isSightInCart(destination.id);
-
+          {items.map((item, index) => {
+            const isInCart = isSightInCart(item.id);
+            if (!item.src || item.src === "") {
+              return null;
+            }
             return (
-              <SwiperSlide key={destination.id}>
+              <SwiperSlide key={item.id || index}>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden relative">
                   <Link
                     href={`/card/${encodeURIComponent(
-                      destination.title[currentLanguage]
+                      item.title[currentLanguage]
                     )}`}
                   >
                     <div className="cursor-pointer select-none">
                       <div className="relative w-full h-52 sm:h-52 md:h-96 group">
                         <div className="relative w-full h-full overflow-hidden">
                           <Image
-                            src={destination.src || "/placeholder.svg"}
-                            alt={destination.title[currentLanguage]}
+                            src={item.src}
+                            alt={item.title[currentLanguage]}
                             fill
                             className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
                             quality={75}
@@ -290,10 +223,10 @@ export default function CardSwiperSlider() {
                         </div>
                         <div className="p-2 sm:p-4 absolute bottom-1 sm:bottom-2 text-white z-20">
                           <h4 className="text-[10px] sm:text-sm md:text-lg font-semibold mb-0.5 sm:mb-2">
-                            {destination.title[currentLanguage]}
+                            {item.title[currentLanguage]}
                           </h4>
                           <div className="text-[9px] sm:text-sm line-clamp-2">
-                            {destination.description[currentLanguage]}
+                            {item.additionalDescription[currentLanguage]}
                           </div>
                         </div>
                       </div>
@@ -304,11 +237,11 @@ export default function CardSwiperSlider() {
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={(e) => handleHeartClick(destination, e)}
+                        onClick={(e) => handleHeartClick(item, e)}
                         className="cursor-pointer"
                       >
                         <Heart
-                          size={16}
+                          size={15}
                           className={`sm:w-5 sm:h-5 transition-all duration-200 ease-in-out ${
                             isInCart
                               ? "text-red-500 fill-red-500"
@@ -317,7 +250,7 @@ export default function CardSwiperSlider() {
                         />
                       </motion.div>
 
-                      {heartAnimations[destination.id] && (
+                      {heartAnimations[item.id] && (
                         <div className="absolute top-0 left-0 pointer-events-none">
                           {Array.from({ length: 10 }, (_, i) => (
                             <motion.div
@@ -329,7 +262,7 @@ export default function CardSwiperSlider() {
                               className="absolute top-2 left-2"
                             >
                               <Heart
-                                size={12}
+                                size={10}
                                 className="text-white fill-white"
                               />
                             </motion.div>

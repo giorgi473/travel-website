@@ -4,18 +4,14 @@ import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import { Heart, X } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Map } from "@/components/Map";
 import { Skeleton } from "@/components/ui/skeleton";
 import Blogs from "@/components/Blogs";
+import CardSwiperSlider from "@/components/modules/CardSwiperSlider";
 
-// Type definitions
 interface Destination {
   id: number;
   title: {
@@ -195,7 +191,7 @@ export default function CardPage({
   // Error state
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-500 mb-4">
             {currentLanguage === "en" ? "Error" : "შეცდომა"}
@@ -254,6 +250,16 @@ export default function CardPage({
       hours: card.workingHours.Sunday,
     },
   ];
+
+  const sliderTitle =
+    card.slideCard[0]?.text?.[currentLanguage] ||
+    (currentLanguage === "en"
+      ? "Explore top attractions"
+      : "აღმოაჩინეთ ტოპ სანახაობები");
+
+  const filteredSlideCard = card.slideCard.filter(
+    (item) => item.src && item.src !== ""
+  );
 
   return (
     <div className="space-y-14">
@@ -408,7 +414,7 @@ export default function CardPage({
       <section>
         <div className="mx-auto space-y-4 px-5 sm:container sm:px-8 lg:max-w-4xl">
           <div>
-            <h3 className="text-3xl font-bold">
+            <h3 className="text-xl font-bold">
               {card.anotherSection.name1?.[currentLanguage]}
             </h3>
           </div>
@@ -422,7 +428,7 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">
+            <p className="text-xl font-bold">
               {card.anotherSection.name2?.[currentLanguage]}
             </p>
           </div>
@@ -464,7 +470,7 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">
+            <p className="text-xl font-bold">
               {card.anotherSection.name3?.[currentLanguage]}
             </p>
           </div>
@@ -478,7 +484,7 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">
+            <p className="text-xl font-bold">
               {card.anotherSection.name4?.[currentLanguage]}
             </p>
           </div>
@@ -492,7 +498,7 @@ export default function CardPage({
               ))}
           </div>
           <div>
-            <p className="text-3xl font-bold">
+            <p className="text-xl font-bold">
               {card.anotherSection.name5?.[currentLanguage]}
             </p>
           </div>
@@ -508,119 +514,20 @@ export default function CardPage({
         </div>
       </section>
       <section>
-        <div className="container mx-auto pr-4 pl-5 sm:pr-5 sm:pl-8 md:pr-5 md:pl-8 lg:pr-7 lg:pl-10">
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center">
-              <h3 className="text-sm sm:text-lg md:text-xl font-semibold">
-                {card.slideCard[0]?.text?.[currentLanguage] ||
-                  (currentLanguage === "en"
-                    ? "Explore top attractions"
-                    : "აღმოაჩინეთ ტოპ სანახაობები")}
-              </h3>
-            </div>
-            <div className="flex gap-2">
-              <button className="custom-prev-button cursor-pointer">
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button className="custom-next-button cursor-pointer">
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="px-4">
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-            }}
-            navigation={{
-              nextEl: ".custom-next-button",
-              prevEl: ".custom-prev-button",
-            }}
-            className="w-full"
-          >
-            {card.slideCard.map((item, index) => {
-              if (!item.src || item.src === "") {
-                return null;
-              }
-              return (
-                <SwiperSlide key={index}>
-                  <Link
-                    href={`/card/${encodeURIComponent(
-                      item.name[currentLanguage] || "unnamed"
-                    )}`}
-                  >
-                    <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer select-none">
-                      <div className="relative w-full h-80 sm:h-96 md:h-96 group">
-                        <div className="relative w-full h-full overflow-hidden">
-                          <Image
-                            src={item.src}
-                            alt={item.title[currentLanguage] || "Slide image"}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-all duration-300 ease-in-out z-0"
-                            quality={75}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                        </div>
-                        <div className="absolute top-5 right-5 z-20">
-                          <Heart
-                            size={16}
-                            className="text-white hover:text-red-500 transition-all duration-200 ease-in-out"
-                          />
-                        </div>
-                        <div className="p-4 absolute bottom-2 text-white z-20">
-                          <h4 className="text-sm sm:text-lg font-semibold mb-2">
-                            {item.title[currentLanguage] || "No title"}
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
+        <CardSwiperSlider items={filteredSlideCard} title={sliderTitle} />
       </section>
       <section>
         <div className="px-5 lg:px-0">
           <Map />
         </div>
       </section>
-      <Blogs
-        blogs={card.blogs}
-        title={card.blogs[0]?.blogText}
-        showTitle={true}
-      />
+      <section>
+        <Blogs
+          blogs={card.blogs}
+          title={card.blogs[0]?.blogText}
+          showTitle={true}
+        />
+      </section>
     </div>
   );
 }
