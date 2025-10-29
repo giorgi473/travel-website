@@ -161,11 +161,11 @@ const MapOfGeorgia: React.FC = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -left-4 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
-            <ChevronLeft className="text-red-600 size-5 z-20 absolute left-3.5" />
+          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -left-5 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
+            <ChevronLeft className="text-red-600 size-5 z-20 absolute left-4" />
           </div>
-          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -right-4 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
-            <ChevronRight className="text-red-600 size-5 z-20 absolute right-3.5" />
+          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -right-5 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
+            <ChevronRight className="text-red-600 size-5 z-20 absolute right-4" />
           </div>
         </div>
         <div className="w-full relative mt-10 lg:mt-24 ml-8 sm:ml-10 md:ml-12">
