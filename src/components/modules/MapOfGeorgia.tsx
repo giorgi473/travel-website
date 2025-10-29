@@ -19,14 +19,21 @@ const MapOfGeorgia: React.FC = () => {
 
   const svgRef = useRef<SVGSVGElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const swiperRef = useRef<SwiperCore | null>(null);
+  const imagesSwiperRef = useRef<SwiperCore | null>(null);
+  const mapSwiperRef = useRef<SwiperCore | null>(null);
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [activeMapSlide, setActiveMapSlide] = useState<number>(0);
+
+  const mapSwiperSlides = [
+    { type: "map" },
+    { type: "image", image: images[1] },
+  ];
 
   useEffect(() => {
+    // მხოლოდ ჰოვერის ლოგიკა რუკაზე და images სლაიდზე გადასვლა
     const svg = svgRef.current;
     const tooltip = tooltipRef.current;
-
     if (svg && tooltip) {
       const handleMouseMove = (e: MouseEvent) => {
         const rect = svg.getBoundingClientRect();
@@ -47,12 +54,12 @@ const MapOfGeorgia: React.FC = () => {
             : regionName;
           tooltip.style.display = "block";
           setActiveRegion(regionName);
-
+          // რუკის region-ისას მარცხენა swiper-ზე გადავაყოლებთ, როგორც თავდაპირველ კოდში
           const slideIndex = images.findIndex(
             (img) => img.region === regionName
           );
-          if (slideIndex !== -1 && swiperRef.current) {
-            swiperRef.current.slideTo(slideIndex);
+          if (slideIndex !== -1 && imagesSwiperRef.current) {
+            imagesSwiperRef.current.slideTo(slideIndex);
             setActiveSlide(slideIndex);
           }
         }
@@ -103,7 +110,8 @@ const MapOfGeorgia: React.FC = () => {
         )}
       </h3>
       <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row gap-10 items-center justify-center">
-        <div className="w-full rounded-lg relative select-none overflow-hidden">
+        {/* მარცხენა images swiper: სატრადიციულად, სრულიად უცვლელი*/}
+        <div className="w-full lg:w-[45%] rounded-lg relative select-none overflow-hidden">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
@@ -115,7 +123,7 @@ const MapOfGeorgia: React.FC = () => {
             }}
             pagination={{ clickable: true }}
             className="w-full"
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSwiper={(swiper) => (imagesSwiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
           >
             {images.map((image) => (
@@ -147,8 +155,8 @@ const MapOfGeorgia: React.FC = () => {
                           : "Destinations"}
                       </h1>
                       <ul className="text-gray-600 flex items-center gap-2">
-                        {titleItem.bla.map((item, index) => (
-                          <li key={index} className="text-gray-500">
+                        {titleItem.bla.map((item, idx) => (
+                          <li key={idx} className="text-gray-500">
                             {typeof item === "object"
                               ? item[currentLanguage] || item["ka"]
                               : item}
@@ -161,67 +169,125 @@ const MapOfGeorgia: React.FC = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -left-5 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
+          <div className="swiper-button-prev-custom absolute bg-gray-100 h-10 w-10 -left-5 top-[150px] -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
             <ChevronLeft className="text-red-600 size-5 z-20 absolute left-4" />
           </div>
-          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -right-5 top-[150px] transform -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
+          <div className="swiper-button-next-custom absolute bg-gray-100 h-10 w-10 -right-5 top-[150px] -translate-y-1/2 cursor-pointer rounded-full flex items-center justify-center z-10 select-none">
             <ChevronRight className="text-red-600 size-5 z-20 absolute right-4" />
           </div>
         </div>
-        <div className="w-full relative mt-10 lg:mt-24 ml-8 sm:ml-10 md:ml-12">
-          <svg
-            ref={svgRef}
-            viewBox="0 0 900 500"
-            className="w-full h-auto"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <style>
-              {`
-                .tooltip {
-                  position: absolute;
-                  background: white;
-                  border: 1px solid #837f7c;
-                  padding: 9px 12px;
-                  border-radius: 6px;
-                  font-size: 16px;
-                  pointer-events: none;
-                  display: none;
-                  z-index: 10;
-                  white-space: nowrap;
-                }
-              `}
-            </style>
-            <rect fill="#ffffff" />
-            {images.map((image) => (
-              <path
-                key={image.region}
-                data-title={image.region}
-                d={image.path}
-                stroke="#b7b7b7"
-                fill={
-                  activeRegion === image.region ||
-                  activeSlide ===
-                    images.findIndex((img) => img.region === image.region)
-                    ? "red"
-                    : image.region === "Abkhazia" ||
-                      image.region === "Samachablo" ||
-                      image.region === "Adjara" ||
-                      image.region === "Kakheti" ||
-                      image.region === "Tbilisi"
-                    ? "#eeebf3"
-                    : "#ffffff"
-                }
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="cursor-pointer hover:fill-red-500"
-                onClick={() => handlePathClick(image.region)}
-              />
-            ))}
-          </svg>
-          <div
-            ref={tooltipRef}
-            className="tooltip font-medium select-none"
-          ></div>
+
+        {/* მარჯვენა სვაიპერი: რუკა/სურათი, ზემოთ pagination/dots */}
+        <div className="w-full lg:w-[55%] relative mt-10 lg:mt-24 ml-8 sm:ml-10 md:ml-12 lg:-mr-12">
+          <div className="relative">
+            {/* pagination dots */}
+            <div className="absolute left-1/2 -translate-x-1/2 -top-10 flex gap-5 z-20">
+              {mapSwiperSlides.map((slide, idx) => (
+                <button
+                  key={slide.type}
+                  type="button"
+                  className={
+                    "h-5 w-5 sm:w-6 sm:h-6 rounded-full cursor-pointer flex items-center justify-center border-2 border-red-600 bg-white transition-all"
+                  }
+                  style={{ outline: "none", position: "relative" }}
+                  onClick={() => {
+                    if (mapSwiperRef.current) mapSwiperRef.current.slideTo(idx);
+                    setActiveMapSlide(idx);
+                  }}
+                  aria-label={slide.type === "map" ? "რუკა" : "სურათი"}
+                >
+                  {activeMapSlide === idx && (
+                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-red-600 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></span>
+                  )}
+                </button>
+              ))}
+            </div>
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={10}
+              slidesPerView={1}
+              loop={false}
+              onSwiper={(swiper) => (mapSwiperRef.current = swiper)}
+              onSlideChange={(swiper) => setActiveMapSlide(swiper.realIndex)}
+              navigation={false}
+              pagination={false}
+              className="w-full"
+            >
+              {/* First slide: SVG Map */}
+              <SwiperSlide key="map-svg">
+                <div className="relative">
+                  <svg
+                    ref={svgRef}
+                    viewBox="0 0 900 500"
+                    className="w-full h-auto"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <style>
+                      {`
+                        .tooltip {
+                          position: absolute;
+                          background: white;
+                          border: 1px solid #837f7c;
+                          padding: 9px 12px;
+                          border-radius: 6px;
+                          font-size: 16px;
+                          pointer-events: none;
+                          display: none;
+                          z-index: 10;
+                          white-space: nowrap;
+                        }
+                      `}
+                    </style>
+                    <rect fill="#ffffff" />
+                    {images.map((image) => (
+                      <path
+                        key={image.region}
+                        data-title={image.region}
+                        d={image.path}
+                        stroke="#b7b7b7"
+                        fill={
+                          activeRegion === image.region ||
+                          activeSlide ===
+                            images.findIndex(
+                              (img) => img.region === image.region
+                            )
+                            ? "red"
+                            : image.region === "Abkhazia" ||
+                              image.region === "Samachablo" ||
+                              image.region === "Adjara" ||
+                              image.region === "Kakheti" ||
+                              image.region === "Tbilisi"
+                            ? "#eeebf3"
+                            : "#ffffff"
+                        }
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="cursor-pointer hover:fill-red-500"
+                        onClick={() => handlePathClick(image.region)}
+                      />
+                    ))}
+                  </svg>
+                  <div
+                    ref={tooltipRef}
+                    className="tooltip font-medium select-none"
+                  ></div>
+                </div>
+              </SwiperSlide>
+              {/* Second slide: images[1] */}
+              <SwiperSlide key="second-image">
+                <div className="relative mr-8">
+                  <Image
+                    src={"/picture/map_driving_times_ka.png"}
+                    alt={images[1].alt}
+                    width={600}
+                    height={200}
+                    className="w-auto h-auto object-cover rounded-lg md:w-[644px] lg:w-[580px]"
+                    priority={false}
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
       </div>
     </div>
