@@ -4,6 +4,7 @@ import Header from "@/components/shared/Header";
 import { Inter } from "next/font/google"; // Import the Inter font
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import Footer from "@/components/shared/Footer";
 
 // Initialize the Inter font with desired subsets and weights
 const inter = Inter({
@@ -57,6 +58,7 @@ export default function RootLayout({
             <Header />
             <main className="min-h-screen">{children}</main>
           </CartProvider>
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

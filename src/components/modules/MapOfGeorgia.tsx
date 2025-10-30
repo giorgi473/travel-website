@@ -222,7 +222,7 @@ const MapOfGeorgia: React.FC = () => {
                   <span
                     className={
                       activeMapSlide === idx
-                        ? "font-semibold text-[#d92549] text-xs sm:text-lg whitespace-nowrap cursor-pointer"
+                        ? "font-semibold text-black text-xs sm:text-lg whitespace-nowrap cursor-pointer"
                         : "text-gray-400 text-xs sm:text-lg whitespace-nowrap cursor-pointer"
                     }
                     onClick={() => handlePaginationClick(idx)}
