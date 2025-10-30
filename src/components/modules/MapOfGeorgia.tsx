@@ -312,7 +312,7 @@ const MapOfGeorgia: React.FC = () => {
                       alt={images[1].alt}
                       width={600}
                       height={200}
-                      className="w-auto h-auto object-cover rounded-lg md:w-[644px] lg:w-[580px]"
+                      className="w-auto h-auto object-cover rounded-lg md:w-[644px] lg:w-auto"
                       priority={false}
                     />
                   </div>
@@ -323,7 +323,7 @@ const MapOfGeorgia: React.FC = () => {
                       alt={images[1].alt}
                       width={600}
                       height={200}
-                      className="w-auto h-auto object-cover rounded-lg md:w-[644px] lg:w-[580px]"
+                      className="w-auto h-auto object-cover rounded-lg md:w-[644px] lg:w-auto"
                       priority={false}
                     />
                   </div>
