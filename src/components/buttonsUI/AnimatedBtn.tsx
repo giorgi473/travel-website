@@ -22,7 +22,7 @@ export default function AnimatedBtn({
           rounded-md text-white text-sm sm:text-base md:text-lg lg:text-lg font-semibold
           bg-gradient-to-br ${classNameButton}
           transition-all duration-300
-          focus:outline-none cursor-pointer
+          focus:outline-none cursor-pointer 
           group
           active:top-[2px] border-2
         `}
