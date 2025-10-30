@@ -4,9 +4,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Layers2, Map } from "lucide-react";
-import { images, SlideImage } from "@/lib/data";
-import { useLanguage } from "@/context/LanguageContext"; // Adjust path as needed
 import { GeorgiaSpinner } from "@/components/modules/LoaderSpinner";
+import { useLanguage } from "@/context/LanguageContext"; // Adjust path as needed
+import { images, SlideImage } from "@/lib/data";
 
 interface PageProps {
   params: Promise<{ regionText: string }>;
@@ -73,12 +73,12 @@ function RegionPage({ params }: PageProps) {
           priority
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
-        <div className="absolute inset-0 flex items-center bg-black/40 justify-start px-4 sm:px-8 md:px-12 lg:px-36">
-          <div className="text-white p-4 sm:p-6 rounded-lg max-w-[98%] sm:max-w-[80%] md:max-w-2xl lg:max-w-3xl">
+        <div className="absolute inset-0 flex items-center bg-black/40 justify-start select-none">
+          <div className="text-white container mx-auto px-5 sm:px-8 md:px-8 lg:px-10">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 md:mb-10">
               {region.translations[currentLanguage]}
             </h1>
-            <div className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 md:mb-8">
+            <div className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 md:mb-8 w-[100%] sm:w-[95%] md:w-[90%] lg:w-[75%]">
               {region.description[currentLanguage]}
             </div>
             <div className="text-gray-200">
