@@ -306,7 +306,7 @@ const MapOfGeorgia: React.FC = () => {
               {/* Second slide: images[1] */}
               <SwiperSlide key="second-image">
                 {currentLanguage === "en" ? (
-                  <div className="relative mr-8">
+                  <div className="relative mr-8 w-auto">
                     <Image
                       src={"/picture/map_driving_times_en.png"}
                       alt={images[1].alt}
@@ -317,7 +317,7 @@ const MapOfGeorgia: React.FC = () => {
                     />
                   </div>
                 ) : (
-                  <div className="relative mr-8">
+                  <div className="relative mr-8 w-auto">
                     <Image
                       src={"/picture/map_driving_times_ka.png"}
                       alt={images[1].alt}
