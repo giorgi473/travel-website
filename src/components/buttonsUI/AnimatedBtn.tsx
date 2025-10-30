@@ -21,7 +21,6 @@ export default function AnimatedBtn({
           relative overflow-hidden min-w-[130px] px-2 sm:px-4 md:px-6 py-2
           rounded-md text-white text-sm sm:text-base md:text-lg lg:text-lg font-semibold
           bg-gradient-to-br ${classNameButton}
-          shadow-lg shadow-red-800/30
           transition-all duration-300
           focus:outline-none cursor-pointer
           group
@@ -44,7 +43,6 @@ export default function AnimatedBtn({
             z-0
             transition-all duration-300
             group-hover:w-full group-hover:left-0
-            box-shadow-[inset_2px_2px_2px_rgba(170,155,155,0.5),7px_7px_20px_rgba(0,0,0,0.1),4px_4px_5px_rgba(0,0,0,0.1)]
           `}
         />
         <span className="relative z-10 font-medium flex items-center gap-2">
