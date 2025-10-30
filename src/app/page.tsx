@@ -17,7 +17,7 @@ function page() {
           <MapOfGeorgia />
         </div>
       </section>
-      <section>სდსდ</section>
+      <section>sdsdsd</section>
     </div>
   );
 }

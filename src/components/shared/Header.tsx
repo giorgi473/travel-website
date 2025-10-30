@@ -16,6 +16,7 @@ import {
 import GeorgianMap from "../GeorgianMap";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
+import EarthCanvas from "@/components/modules/EarthCanvas";
 import { navItems, NavItemDetail } from "@/data/headerData";
 
 function Header() {
@@ -805,7 +806,7 @@ function Header() {
                                 handleLinkClick(column.items[0].href)
                               }
                             >
-                              {/* <EarthCanvas /> */}
+                              <EarthCanvas />
                             </div>
                           )}
                           {column.items.map((item, textIndex) => (
@@ -1130,7 +1131,7 @@ function Header() {
                     className="-ml-11 cursor-pointer"
                     onClick={() => handleLinkClick(column.items[0].href)}
                   >
-                    {/* <EarthCanvas /> */}
+                    <EarthCanvas />
                   </div>
                 )}
                 {column.items.map((item, textIndex) => (
