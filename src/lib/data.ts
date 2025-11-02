@@ -2398,8 +2398,8 @@ export const images: SlideImage[] = [
     ],
     range: [
       {
-        min: 0,
-        max: 0,
+        min: 57,
+        max: 23,
       },
     ],
   },
@@ -2409,12 +2409,12 @@ export const images: SlideImage[] = [
     translations: { ka: "რაჭა", en: "Racha" },
     path: "M417.7 116.9L429.2 120.1L433.8 121.3L442.2 125.4L444.3 127.2L449.4 133.3L451.7 134.7L463.1 137.5L466.4 139.2L468.6 140.3L470 145.2L467.2 149.2L462.9 152.3L459.5 155.7L459.1 160.6L462.6 165L468.1 166.5L474.1 167L479.1 168.3L481.9 170.5L481.2 178.9L474.7 183.6L472 188.4L469.6 189.5L452.6 190.9L442.6 199L440 198L432.1 195.1L419.7 196.1L406.7 194.7L395.1 200.8L390.8 205.2L385.6 207.3L376.8 208.1L371 204.8L368.4 204.3L365.3 201.8L363.8 196.6L357.6 190.8L350.8 186.5L347.8 186.6L345 189.4L341.8 189.1L338.7 187.8L325.5 192.2L325.4 188.7L324.4 185.6V181.5L323.3 177.7L314 159.1L317.2 152.2L311.7 146.5L298 138.7L291.3 132.9L294.3 127.1L298.2 124.9L302.7 124.6L304.2 124.2L305.6 123.2L306.9 120.1L308.4 117.3H311.5L314.5 118.7L331.9 123L339.1 123.3L342.4 121.8L343.9 120.5L345.5 119.7L358.7 125.7L367.6 124.5L375.3 127.4L378.7 128L380.8 124.5L381.1 119.3L383.9 116.7L388 110.8L392 109.2L394.4 110.5L417.7 116.9Z",
     src: "/picture/racha-lechkhumi.webp",
-    modalSrc: "/picture/racha-lechkhumi.webp",
+    modalSrc: "/picture/racha-lechkhumi-gnta.webp",
     alt: "Racha",
     title: [
       {
         id: 2,
-        text: { ka: "რაჭა", en: "Racha" },
+        text: { ka: "რაჭა ssdsd", en: "Racha" },
         bla: [
           { ka: "ამბროლაური", en: "Ambrolauri" },
           { ka: "ონი", en: "Oni" },
@@ -2423,8 +2423,8 @@ export const images: SlideImage[] = [
     ],
 
     description: {
-      ka: "„სულის ქვეყანა“ - ხშირად ასეც ეძახიან დღემდე იდუმალებით მოცულ ამ მხარეს, რომელიც ცნობილია თავისი ზღვაში ჩაძირული ქალაქებით, „ოქროს ვერძის“ ლეგენდით, მზის ტაძრებით, უძველესი სამარხებითა და ციხესიმაგრეებით. ადამიანები აქ ქვის ხანიდან მოყოლებული ცხოვრობდნენ, მასზე აღფრთოვანებით წერდნენ: ჰეროდოტე, სტრაბონი, ფლავიუსი, არიანე, არქანჯელო ლამბერტი თუ შარდენი.",
-      en: "The 'Land of the Soul' - this is how this region, still shrouded in mystery, is often called, known for its cities submerged in the sea, the legend of the 'Golden Fleece,' sun temples, ancient burial sites, and fortresses. People have lived here since the Stone Age, and it was written about with admiration by Herodotus, Strabo, Flavius, Arrian, Archangelo Lamberti, and Chardin.",
+      ka: "საქართველოს ამ ულამაზეს მხარეს ქვეყნის სამი საოცარი კუთხე - რაჭა, ლეჩხუმი და ქვემო სვანეთი შეადგენს. რაჭა და ლეჩხუმი კავკასიონის ქედის გასწვრივ, ქვეყნის უკიდურეს ჩრდილო-დასავლეთ ნაწილში მდებარეობს, ქვემო სვანეთი ჩრდილოეთით, კავკასიონის ქედის სამხრეთ კალთებზეა შეფენილი. მდინარეების - რიონის, ცხენისწყლისა და ლაჯანურის ხეობებში განფენილ რეგიონს იმერეთი, სამაჩაბლოში (ე. წ. სამხრეთ ოსეთი) შემავალი ჯავის მუნიციპალიტეტი და სამეგრელო-ზემო სვანეთის მხარე ესაზღვრება.",
+      en: "This beautiful region of Georgia includes three amazing areas of the country – Racha, Lechkhumi, and Kvemo Svaneti. This region, within the valleys of the Rioni, Tskhenistskali, and Lajanuri rivers, borders Imereti Region, Java Municipality of Samachablo (so-called South Ossetia), and the Samegrelo - Zemo Svaneti Region. It is hugged by the mountains from the north, some of them are more than 4000 meters above sea level.",
     },
     citiesTimes: [
       { name: { ka: "თბილისი", en: "Tbilisi" }, times: ["7 სთ"] },
@@ -2433,59 +2433,70 @@ export const images: SlideImage[] = [
     ],
     descriptionTexts: [
       {
-        header: { ka: "სოხუმი", en: "Sukhumi" },
+        header: {
+          ka: "რაჭა ლეჩხუმის და ქვემო სვანეთის მუნიციპალიტეტები",
+          en: "Sukhumi",
+        },
         img: "",
         desc: {
-          ka: "საქართველოს შემადგენელი ნაწილი - აფხაზეთი, რომლის ფართობიც 8,700 კვ.კმ-ია, ქვეყნის უკიდურეს ჩრდილო-დასავლეთში მდებარეობს, ის ჩრდილოეთიდან - კავკასიონის მთავარი ქედით, სამხრეთ-დასავლეთიდან კი შავი ზღვით არის დაცული. აფხაზეთის სანაპირო ზოლის სიგრძე 195 კმ-ია. ჰავა აქ თბილია, ნოტიო და სუბტროპიკული.",
+          ka: "რაჭა-ლეჩხუმ - ქვემო სვანეთში ოთხი მუნიციპალიტეტია: ამბროლაურის (ქვემო რაჭა), ონის (ზემო რაჭა), ცაგერის (ლეჩხუმი), ლენტეხის (ქვემო სვანეთი). მხარეში არის 3 ქალაქი - ამბროლაური, ონი, ცაგერი, 2 დაბა - ლენტეხი და ხარისთვალა და 251 სოფელი. მხარის ადმინისტრაციული ცენტრია ქალაქი ამბროლაური. 4954 კვ.მ ფართობის მქონე ეს მხარე უნიკალური ისტორიითა და ხუროთმოძღვრული ძეგლებით გამოირჩევა, აქ მრავალფეროვანი ბუნებაა, მწვერვალები, მღვიმეები, მდინარეები, ჩანჩქერები და ტბები.  ",
           en: "A constituent part of Georgia, Abkhazia, with an area of 8,700 sq.km, is located in the extreme northwest of the country, bordered by the main ridge of the Caucasus Mountains to the north and the Black Sea to the southwest. The length of Abkhazia’s coastline is 195 km. The climate here is warm, humid, and subtropical.",
         },
       },
       {
         header: {
-          ka: "სოხუმის ბოტანიკური ბაღი",
+          ka: "რაჭა-ლეჩხუმ - ქვემო სვანეთის ისტორია",
           en: "Sukhumi Botanical Garden",
         },
-        img: "",
+        img: "/region/khvamli-mountain-1.webp",
         desc: {
-          ka: "აფხაზეთის ოაზისი კავკასიაში უძველესი ბოტანიკური ბაღია, სადაც 5000-ზე მეტი ჯიშის ეგზოტიკური მცენარე წელიწადის ყველა სეზონზე ხარობს, მნახველს შეუძლია დატკბეს ჩრდილოეთ ამერიკიდან, სამხრეთ-აღმოსავლეთ აზიიდან, ავსტრალიიდან და სხვა ქვეყნებიდან ჩამოტანილი იშვიათი ჯიშის მცენარეებით, ისეირნოს ბამბუკის გრძელ ხეივანში, დაისვენოს გიგანტური, 20 მეტრის სიმაღლის 250 წლის ცაცხვის ხის ჩრდილში,  დატკბეს უდაბნოებიდან ჩამოტანილი სუკულენტებით.",
+          ka: "ბერძნული მითოლოგიით, პრომეთესთან დაკავშირებული ხვამლის მთა, სადაც ღმერთებთან მებრძოლი მითური გმირი იყო მიჯაჭვული, სწორედ ცაგერის ტერიტორიაზე მდებარეობს. რაც შეეხება ისტორიულ წყაროებს, მათი მიხედვით, რაჭა-ლეჩხუმ - ქვემო სვანეთში ადამიანების ცხოვრების პირველი ნიშნები ქვის ხანით თარიღდება. ამ ტერიტორიებზე აღმოჩენილია ბრინჯაოსა და რკინის ხანის ნივთები. სვანეთში აღმოჩენილი ბრინჯაოს ხანის სპილენძის მაღაროები ადასტურებს, რა როლი ითამაშა მხარემ ამ მადნის მოპოვებასა და დამუშავებაში. უძველესი სვანები მაღალი ხარისხის ბრინჯაოს იღებდნენ. ამ თვალსაზრისით გამორჩეული იყო მდინარე რიონის ზემო წელი, სადაც ბრინჯაოს წარმოების მსხვილი ცენტრები არსებობდა. \n\n  სვანეთს უდიდესი როლი აქვს ოქროს წარმოების განვითარებაშიც. ადრეულ საუკუნეებში ეს მხარე კოლხეთის სამეფოს შემადგენლობაში შედიოდა და სავარაუდოდ მითი ოქროს საწმისის შესახებ სვანეთში ოქროს მოპოვების ტრადიციასაც უკავშირდება. \n\n  რაჭა-ლეჩხუმ-ქვემო სვანეთი კარგად იყო დაცული როგორც ბუნებრივი პირობებით, ისე ციხესიმაგრეებით, რის გამოც მას ხშირად აფარებდნენ თავს მტრისაგან დევნილი მეფეები და დიდგვაროვანთა ოჯახები. ცაგერს, ისევე, როგორც სვანეთს, სამეფო განძსაცავსაც უწოდებდნენ. ",
           en: "Abkhazia’s oasis in the Caucasus is the oldest botanical garden, where over 5,000 species of exotic plants thrive in every season. Visitors can enjoy rare plant species brought from North America, Southeast Asia, Australia, and other countries, stroll through a long bamboo avenue, rest in the shade of a giant 250-year-old, 20-meter-tall linden tree, and admire succulents brought from deserts.",
         },
       },
       {
         header: {
-          ka: "აფხაზეთის ღირსშესანიშნაობები",
+          ka: "რაჭა-ლეჩხუმის ისტორიული ძეგლები",
           en: "Abkhazia’s Landmarks",
         },
-        img: "",
+        img: "/region/nikortsminda-1.webp",
         desc: {
-          ka: "სამხატვრო გალერეა, სახელმწიფო მუზეუმი, ბაგრატიონთა ეპოქის (XI საუკუნე) ნაგებობების ნაშთი, სტალაქტიტური მღვიმეები სოფელ შრომასთან, უნიკალური ფერმა-ლაბორატორია - პრიმატორიუმი, შერვაშიძეთა საგვარეულო სამფლობელო - ყველაფერი ეს სოხუმსა და მის შემოგარენში შეგიძლია დაათვალიერო. \n\n აქ ბევრი საინტერესო ადგილი და ულამაზესი პეიზაჟია, რომლებითაც სოხუმის ბორცვიდან, სოხუმის ციხიდან, ანაკოფიის ციხესიმაგრიდან, ბაგრატის ციხიდან, „სოხუმის შუქურადან“ დატკბები.",
+          ka: "რაჭა-ლეჩხუმ - ქვემო სვანეთშია ქართული ხუროთმოძღვრების შედევრი - ნიკორწმინდის ტაძარი, აქაა: ბარაკონი, ლაბეჭინა, მრავალძალის, გონის მთავარანგელოზის, სხიერის სამონასტრო კომპლექსი, ხოტევისა და მინდას ციხეები, კვარაციხე, ციკლოპური ნაციხარი, გონისა და ცხეთის წმ. გიორგის ეკლესიები, მურისა და ორბელიანის ციხესიმაგრეები, ონის სინაგოგა და ბევრი სხვა.",
           en: "Art gallery, state museum, remnants of structures from the Bagrationi era (11th century), stalactite caves near the village of Shroma, a unique farm-laboratory - Primatorium, and the Shervashidze family estate - all these can be explored in Sukhumi and its surroundings. \n\n There are many interesting places and beautiful landscapes to enjoy from Sukhumi Hill, Sukhumi Fortress, Anakopia Fortress, Bagrati Fortress, and the 'Sukhumi Lighthouse.'",
         },
       },
       {
         header: {
-          ka: "კიდევ რა უნდა ნახო აფხაზეთში?",
+          ka: "პრომეთეს მთა, შაორის წყალსაცავი და სხვა",
           en: "What Else to See in Abkhazia?",
         },
         img: "",
         desc: {
-          ka: "გუდაუთის რაიონში ზღვის დონიდან 1950 მეტრზე მდებარეობს მსოფლიოში ერთ-ერთი ყველაზე ღრმა კარსტული მღვიმე, რომლის ზედა ნაწილი ზამთარ-ზაფხულ ყინულითაა დაფარული; აუცილებლად სანახავია ახალი ათონის კარსტული მღვიმე, გიგანტური სტალაგმიტებითა და გაქვავებული ჩანჩქერებით; ასევე - მსოფლიოში ყველაზე ღრმა, კრუბერის გამოქვაბული. \n\n ლაშქრობის მოყვარულებისთვის იდეალური ადგილია სოფელი განთიადი, სადაც რამდენიმე მეტრში ჰაშუფსეს კანიონია. ველური ბუნება, ფერდობები და პლატოები, თვალუწვდენელი კლდეები, ქვის ლაბირინთებთან ერთად, დიდ შთაბეჭდილებას ახდენს მნახველზე. აუცილებლად მოსანახულებელია სპელეოლოგების ბანაკი, რომელიც არაბიკის მასივზე 2656 მეტრის სიმაღლეზე მდებარეობს. აქ კარვის გაშლა და ღამის გათენებაც შესაძლებელია. \n\n ნახე ძოუს ულამაზესი ტბა, გეგის ფერდობი და ჩანჩქერი, ულამაზესი ფიჭვებით სავსე ბიჭვინთის ჩრდილოეთით საქართველოში ყველაზე ღრმა რიწის ტბის სილამაზე იხილე - წიწვოვანი ნაძვებითა და კოლხური ბზით გარშემორტყმული საოცრება. \n\n აფხაზეთშია საქართველოს უდიდესი მდინარეები ბზიფი და კოდორი და მსოფლიოში ყველაზე პატარა მდინარე რეპრუა, რომლის სიგრძე 18 მეტრს არ აღემატება. აქ, რიწის, ფსხუ-გუმისთისა და ბიჭვინთა-მიუსერას ნაკრძალებში, უნიკალური მცენარეებისა და ცხოველების ნახვაა შესაძლებელი.",
+          ka: "რაჭა-ლეჩხუმ - ქვემო სვანეთის უნიკალური ბუნება - მაღალი, საშუალო და დაბალი სიმაღლის ქედები, მრავალფეროვანი ტყეები, მღვიმეები, მდინარეები, ჩანჩქერები და ტბები სათავგადასავლო მოგზაურობის მოყვარულებისთვის დაუვიწყარი შთაბეჭდილებების ზადგილია. თუმცა პრომეთესთან დაკავშირებული ხვამლის მთა ბევრ მოგზაურში მისტიკურ განწყობასაც ტოვებს. მითებისა და მისტიკური ისტორიების მოყვარულებს ის ნამდვილად დააინტერესებს. \n\n ხვამლის მთა ლეჩხუმში, ცაგერისა და წყალტუბოს მუნიციპალიტეტების ტერიტორიაზეა. ანტიკური წყაროების მიხედვით, ზევსის ბრძანებით, ხვამლზე, იგივე ხომლზე, მიაჯაჭვეს პრომეთე და მის დასახსნელად ჩამოვიდა აქ ჰერაკლე, ეს მთა იყო ბერძენი არგონავტების მოგზაურობის ადგილიც. ქართული ლეგენდის მიხედვით, ხვამლის მთა უდიდეს საიდუმლოს ინახავს. დაზუსტებით არავინ იცის, განძია საიდუმლოში ნაგულისხმევი თუ რამე სხვა. \n\n რეგიონის სავიზიტო ბარათია შაორისა და ლაჯანის წყალსაცავები, რომლებიც ულამაზესი სანახავია. შთამბეჭდავია ნიკორწმინდისა და სხვავის კარსტული მღვიმეები, სიყვარულის, რაჩხისა და ჩქუმის ჩანჩქერები, ქულბაქის, უძირო და სასვანო ტბები. \n\n დაუვიწყარია ლაშქრობა ბუბისა და კირტიშოს მყინვარებსა თუ ჭიორისა და ხიხათის მთებზე. გამორჩეული სანახავია საირმის სვეტები და ასხივის მასივი.",
           en: "In the Gudauta district, at 1,950 meters above sea level, lies one of the world’s deepest karst caves, with its upper part covered in ice year-round; you must visit the New Athos karst cave with its giant stalagmites and petrified waterfalls, as well as the world’s deepest cave, Krubera. \n\n For hiking enthusiasts, the village of Gantiadi is an ideal spot, with the Hashupse Canyon just a few meters away. The wild nature, slopes, plateaus, vast cliffs, and stone labyrinths make a profound impression on visitors. A must-visit is the speleologists’ camp, located at 2,656 meters on the Arabika Massif, where you can pitch a tent and spend the night. \n\n See the beautiful Dzou Lake, the Gegi slope and waterfall, and the stunning beauty of Georgia’s deepest lake, Ritsa, north of Bichvinta, surrounded by coniferous firs and Colchic boxwood. \n\n Abkhazia is home to Georgia’s largest rivers, Bzipi and Kodori, and the world’s shortest river, Reprua, which is no longer than 18 meters. In the Ritsa, Pskhu-Gumista, and Bichvinta-Miusera reserves, you can see unique plants and animals.",
         },
       },
       {
-        header: { ka: "აფხაზური კერძები", en: "Abkhazian Cuisine" },
+        header: { ka: "რაჭა-ლეჩხუმის კურორტები", en: "Abkhazian Cuisine" },
+        img: "/region/res-shovi-udziro-tba-vil-glola.webp",
+        desc: {
+          ka: "რაჭა-ლეჩხუმ - ქვემო სვანეთი მთაში დასვენების მოყვარულებისთვის ერთ-ერთი საუკეთესო ადგილია. აქ მრავლადაა სამკურნალო მინერალური წყლები და კლიმატურ-ბალნეოლოგიური კურორტები: შოვი, უწერა, ლაშიჭალა, ბუგეული და ა.შ. აქ მათივე სახელობის სამკურნალო წყლები მოიპოვება.",
+          en: "Abkhazian cuisine places great emphasis on vegetables, fruits, and dairy products. Whether you stop at a small hut or a restaurant, traditional dishes will definitely be offered. \n\n Abista is a cornmeal porridge that pairs wonderfully with beans, cheese, and meat. Traditional Abkhazian dishes include ashvchapani, or smoked cheese, aritsmgeli, a walnut-filled cornbread, aqrtsa - a bean dish, Abkhazian adjika, fig jam, and more. \n\n If you find yourself in Gudauta, in the village of Likhni, during the traditional festival 'Likhnashta,' you can taste Abkhazian cuisine for free, though it’s easy to find these dishes elsewhere too - in Abkhazia, as in all of Georgia, the door is always open for guests.",
+        },
+      },
+            {
+        header: { ka: "განსაკუთრებული ღვინოები და სამზარეულო", en: "Abkhazian Cuisine" },
         img: "",
         desc: {
-          ka: "აფხაზურ სამზარეულოში დიდი ადგილი უჭირავს ბოსტნეულს, ხილს, რძის პროდუქტებს. მნიშვნელობა არ აქვს, პატარა ფაცხაში შეისვენებ თუ რესტორანში, ტრადიციულ კერძებს აუცილებლად შემოგთავაზებენ. \n\n აბისტა სიმინდის ფქვილის ფაფაა, რომელიც ძალიან უხდება ლობიოს, ყველსა და ხორცს. აფხაზური ტრადიციული კერძია აშვჩაპანი, იგივე გადაზელილი ყველი, არიცმგელი, ანუ ნიგვზიანი მჭადი, აყრდცა - ლობიოს შეჭამადი, აფხაზური აჯიკა, ლეღვის ტყლაპი და სხვა. \n\n თუ გუდაუთაში, სოფელ ლიხნში მოხვდები ტრადიციულ დღესასწაულ „ლიხნაშტაზე“, აფხაზურ სამზარეულოს ნიმუშებს სრულიად უსასყიდლოდ დააგემოვნებ, თუმცა ეს არც სხვაგან გაგიჭირდება - აფხაზეთში, ისევე როგორც მთელ საქართველოში, სტუმრისთვის კარი ყოველთვის ღიაა.",
+          ka: "საქართველოში ვაზის 525 ჯიშია გავრცელებული და რაჭა-ლეჩხუმ - ქვემო სვანეთში მრავალ მათგანს ახარებენ. „ხვანჭკარა“, „ალექსანდროული“, „ოჯალეში“, „რაჭული თეთრა“ და სხვა აქაური ღვინოები ღრმა, საინტერესო გემოვნებით გამოირჩევა. საქართველოში და უკვე მსოფლიოში პოპულარობით სარგებლობს ქვემო რაჭის ღვინო „ხვანჭკარა“, ლეჩხუმში კი განსაკუთრებულ ყურადღებას იმსახურებს ცოლიკაურის ჯიშის ყურძნისგან დაწურული „ტვიში“. ცალკე უნდა აღინიშნოს ერთ-ერთი ყველაზე ძვირფასი ქართული ღვინო - „უსახელოური“. \n\n რაჭა-ლეჩხუმის ღვინოებთან ერთად, აუცილებლად დასაგემოვნებელია აქაური მდიდარი სამზარეულოს ნიმუშები: ხავიწი, ლორი, ლობიანი, წყალდასხმულა, ჯორმა, მაჭყვინარა და გამორჩეული სვანური კერძები: კუბდარი - ცომში მოთავსებული შესუნელებული ხორცით მომზადებული უგემრიელესი გულსართიანი; ჭვიშტარი – გამომცხვარი სიმინდის ფქვილის და წელვადი ყველის ნაზავი; ასევე თაშმიჯაბი - რომელიც კარტოფილითა და ყველით კეთდება.",
           en: "Abkhazian cuisine places great emphasis on vegetables, fruits, and dairy products. Whether you stop at a small hut or a restaurant, traditional dishes will definitely be offered. \n\n Abista is a cornmeal porridge that pairs wonderfully with beans, cheese, and meat. Traditional Abkhazian dishes include ashvchapani, or smoked cheese, aritsmgeli, a walnut-filled cornbread, aqrtsa - a bean dish, Abkhazian adjika, fig jam, and more. \n\n If you find yourself in Gudauta, in the village of Likhni, during the traditional festival 'Likhnashta,' you can taste Abkhazian cuisine for free, though it’s easy to find these dishes elsewhere too - in Abkhazia, as in all of Georgia, the door is always open for guests.",
         },
       },
     ],
     range: [
       {
-        min: 0,
-        max: 0,
+        min: 57,
+        max: 23,
       },
     ],
   },

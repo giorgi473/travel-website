@@ -7,15 +7,38 @@ import { Layers2, Map } from "lucide-react";
 import { GeorgiaSpinner } from "@/components/modules/LoaderSpinner";
 import { useLanguage } from "@/context/LanguageContext"; // Adjust path as needed
 import { images, SlideImage } from "@/lib/data";
+import { DestinationCard } from "@/components/DestinationCard";
 
 interface PageProps {
   params: Promise<{ regionText: string }>;
+}
+
+interface Tour {
+  id: number;
+  title: { en: string; ka: string };
+  image: string;
+  description: { en: string; ka: string };
+  duration: { en: string; ka: string };
+  activities: { en: string; ka: string };
+  currency: { en: string; ka: string };
+  popularTours: Array<{
+    id: number;
+    title: { en: string; ka: string };
+    image: string;
+    mapLink: string;
+    description: { en: string; ka: string };
+  }>;
+  createdAt: string;
+  updatedAt: string;
 }
 
 function RegionPage({ params }: PageProps) {
   const { currentLanguage } = useLanguage();
   const [regionText, setRegionText] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [tours, setTours] = React.useState<Tour[]>([]);
+  const [toursLoading, setToursLoading] = React.useState<boolean>(true);
+  const [randomTours, setRandomTours] = React.useState<Tour[]>([]);
 
   React.useEffect(() => {
     params.then((resolvedParams) => {
@@ -25,6 +48,47 @@ function RegionPage({ params }: PageProps) {
       }, 1500); // 1.5 წამი ლოუდინგზე
     });
   }, [params]);
+
+  // Fetch tours from API
+  React.useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setToursLoading(true);
+        const response = await fetch(
+          "https://nest-travel-api.vercel.app/api/v1/tours"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch tours");
+        }
+        const data: Tour[] = await response.json();
+        setTours(data);
+      } catch (error) {
+        console.error("Error fetching tours:", error);
+        // Optionally set empty array or handle error state
+        setTours([]);
+      } finally {
+        setToursLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, []);
+
+  // Select 2 random tours after fetching
+  React.useEffect(() => {
+    if (tours.length > 0 && !toursLoading) {
+      // Shuffle tours and take first 2
+      const shuffled = [...tours].sort(() => 0.5 - Math.random());
+      setRandomTours(shuffled.slice(0, 2));
+    }
+  }, [tours, toursLoading]);
+
+  const translations = {
+    popularTours: {
+      ka: "პოპულარული ტურები",
+      en: "Popular Tours",
+    },
+  };
 
   // Try to find region by current language first, then by any language
   const region = images.find((r: SlideImage) => {
@@ -63,7 +127,7 @@ function RegionPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="relative w-full h-screen overflow-hidden mb-16">
+      <div className="relative w-full h-screen overflow-hidden space-y-20 mb-16">
         <Image
           src={region.modalSrc}
           alt={region.alt}
@@ -180,6 +244,36 @@ function RegionPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+      <section className="container mx-auto px-5 sm:pl-8 sm:pr-7 md:pl-8 md:pr-7 lg:pl-11 lg:pr-10 py-8">
+        <h1 className="mb-5 text-md sm:text-lg font-bold">
+          {translations.popularTours[currentLanguage]}
+        </h1>
+        {toursLoading ? (
+          <div className="flex justify-center items-center py-8">
+            <GeorgiaSpinner />
+          </div>
+        ) : randomTours.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            {currentLanguage === "ka" ? "ტურები არ მოიძებნა" : "No tours found"}
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {randomTours.map((tour) => (
+              <DestinationCard
+                key={tour.id}
+                id={tour.id}
+                title={tour.title}
+                description={tour.description}
+                image={tour.image}
+                duration={tour.duration}
+                activities={tour.activities}
+                currency={tour.currency}
+                currentLanguage={currentLanguage}
+              />
+            ))}
+          </div>
+        )}
+      </section>
     </>
   );
 }
